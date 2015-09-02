@@ -6,10 +6,8 @@ import (
 	"log"
 )
 
-type DBO struct{}
-
-func (d DBO) DoDataBaseThing() string {
-	db, err := bolt.Open("bolton.db", 0600, nil)
+func DoDataBaseThing(rootPath string) string {
+	db, err := bolt.Open(fmt.Sprintf("%s%s", rootPath, "bolton.db"), 0600, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
